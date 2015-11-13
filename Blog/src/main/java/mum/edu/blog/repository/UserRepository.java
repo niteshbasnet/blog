@@ -1,5 +1,5 @@
 package mum.edu.blog.repository;
 
-public interface BlogRepository {
+public interface UserRepository {
 
 }
