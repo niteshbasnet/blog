@@ -11,6 +11,11 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
 	</definition>
-	
-	
+
+	<definition name="addArticle" extends="baseLayout">
+		<put-attribute name="title" value="Add Article" />
+		<put-attribute name="heading" value="New Article" />
+		<put-attribute name="tagline" value="Post New Article" />
+		<put-attribute name="body" value="/WEB-INF/view/addArticle.jsp" />
+	</definition>
 </tiles-definitions>
