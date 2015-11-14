@@ -10,6 +10,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 					/WEB-INF/config/applicationContext.xml
+					/WEB-INF/config/security-context.xml
 		</param-value>		
 	</context-param>
 
