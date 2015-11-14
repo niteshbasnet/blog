@@ -15,11 +15,11 @@
 
 	<div
 		style="width: 100%; margin: auto; text-align: center; padding: 20px">
-		<div style="padding-left: 200px">
+		<div style="padding-left: 200px; width: 800px">
 			<div style="text-align: left;">
 
 
-				<form:form modelAttribute="newUser" action="Registration"
+				<form:form modelAttribute="newUser" action="signup"
 					enctype="multipart/form-data">
 					<fieldset>
 
@@ -79,19 +79,6 @@
 
 							<tr>
 
-								<td class="label"><label for="phonenumber"><spring:message
-											code="register.phonenumber.label" /></label></td>
-
-								<td class="data">
-
-									<div>
-										<form:input id="phonenumber" path="phonenumber" type="text" />
-										<form:errors path="phonenumber" cssStyle="color:red;" />
-									</div>
-								</td>
-							</tr>
-							<tr>
-
 								<td class="label"><label for="userImage"><spring:message
 											code="register.userimage.label" /></label></td>
 
@@ -112,6 +99,8 @@
 										<form:input id="credential.username"
 											path="credential.username" type="text" />
 										<form:errors path="credential.username" cssStyle="color:red;" />
+									
+										<form:hidden path="credential.authorization" value="user"/>
 									</div>
 
 								</td>
@@ -137,7 +126,7 @@
 
 									<div>
 										<input type="submit" id="btnAdd"
-											value="<spring:message code="register.add.btn"/>" />
+											value="<spring:message code="signup.btn"/>" />
 									</div>
 								</td>
 							</tr>

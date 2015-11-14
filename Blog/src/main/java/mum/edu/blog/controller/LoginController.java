@@ -2,8 +2,11 @@ package mum.edu.blog.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import mum.edu.blog.domain.User;
 
 @Controller
 public class LoginController {
@@ -24,5 +27,10 @@ public class LoginController {
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
  		return "redirect:/";
+ 	}
+	
+	@RequestMapping(value="/signUp", method = RequestMethod.GET)
+	public String signup(@ModelAttribute("newUser") User user) {
+ 		return "signUp";
  	}
 }
