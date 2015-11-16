@@ -7,6 +7,7 @@
 <title>Article Details</title>
 </head>
 <body>
+Welcome ${userName}
 <h4>Title</h4>${article.title}
 <h4>Title</h4>${article.content}
 </body>

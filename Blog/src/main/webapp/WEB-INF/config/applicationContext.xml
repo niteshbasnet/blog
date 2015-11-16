@@ -43,6 +43,7 @@
 
 	<!-- Scan for transaction-based resources -->
 	<context:component-scan base-package="mum.edu.blog.service" />
+		<context:component-scan base-package="mum.edu.blog.utils" />
 	<context:component-scan base-package="mum.edu.blog.domain" />
 	<context:component-scan base-package="mum.edu.blog.repository" />
 

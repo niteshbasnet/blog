@@ -6,19 +6,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
+@SessionAttributes({"userName","blogid"})
 public class LoginController {
 
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String login() {
+	@RequestMapping(value={"/login"}, method = RequestMethod.GET)
+	public String login(Model model) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String name = auth.getName();
-	    
 	    if(name.equals("anonymousUser"))
 	    	return "login";
-	    else return "redirect:/";
+	    else return "redirect:blog";
+	    	
 	}
  
 	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
@@ -29,10 +32,11 @@ public class LoginController {
  
 	}
  
-//	@RequestMapping(value="/logout", method = RequestMethod.GET)
-//	public String logout(Model model) {
-// 		return "redirect:/";
-// 	}
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(Model model, SessionStatus status) {
+		status.setComplete();
+ 		return "redirect:/login";
+ 	}
 	
 //	@RequestMapping(value="/signUp", method = RequestMethod.GET)
 //	public String signup(@ModelAttribute("newUser") User user) {
