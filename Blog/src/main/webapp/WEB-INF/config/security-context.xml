@@ -13,14 +13,15 @@
 	
 	<security:http pattern="/" security="none" />
 	<security:http pattern="/resources/**" security="none" />
-	
+	<security:http pattern="/signup" security="none" />
 	 <security:http use-expressions="true" auto-config='true' disable-url-rewriting="false">
-	
+	<!-- <security:csrf disabled="true"/> -->
 	<!-- Need to redirect exception for web authorization -->
-	<security:access-denied-handler error-page="/error-forbidden" />
-	
+<!-- 	<security:access-denied-handler error-page="/error-forbidden" />
+	 -->
 	 <!-- <security:intercept-url pattern="/movie/add" access="hasRole('ROLE_ADMIN')" />  --> 	
 	 <security:intercept-url pattern="/addArticle" access="hasRole('ROLE_ADMIN')" />  
+	 
 	 <security:intercept-url pattern="/login" access="permitAll" />
 	 <security:intercept-url pattern="/loginfailed" access="permitAll" />
  		
@@ -37,18 +38,18 @@
 	</security:http>
 	
 
-	<!-- <security:authentication-manager>
+ <security:authentication-manager>
 		<security:authentication-provider>
 			<security:password-encoder hash="bcrypt" />
 			<security:jdbc-user-service
 				data-source-ref="dataSource"
-				users-by-username-query="select username,password,enabled from users where username=?"
-				authorities-by-username-query="select u1.username, u2.authority from users u1, authorities u2 where u1.username = u2.username and u1.username =?" />
+				users-by-username-query="select username,password,enabled from user u where u.username=?"
+				authorities-by-username-query="select username, authority from user u where u.username =?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
- -->
 
-	 <security:authentication-manager>
+
+	<!--  <security:authentication-manager>
 		<security:authentication-provider>
 			<security:password-encoder hash="plaintext" />
 			<security:user-service>
@@ -56,5 +57,5 @@
 				<security:user name="guest" password="guest" authorities="ROLE_USER" />
 			</security:user-service>
 		</security:authentication-provider>
-	</security:authentication-manager> 
+	</security:authentication-manager>  -->
 </beans>

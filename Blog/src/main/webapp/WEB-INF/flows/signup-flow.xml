@@ -5,15 +5,18 @@
 http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" start-state="prepareFlow">
 
 <action-state id="prepareFlow">
-    <evaluate expression="signUpService.prepareFlowForm()" result="flowScope.user"/>
+    <evaluate expression="signUpController.prepareFlowForm()" result="flowScope.user"/>
     <transition to="register" />
 </action-state>
 
 
-	<view-state id="register" view="/WEB-INF/view/signUp.jsp" model="user">
-		<transition on="submit" to="confirm"/>
+	<view-state id="register" view="signUp" model="user">
+		<transition on="submit" to="confirm" validate="true"/>
+<!-- 		<transition on-exception="InvalidUserException" to="register"/> -->
         <transition on="back" to="done"/>
 	</view-state>
+	
+	
 <!-- <transition on="userEntered" to="performLoginAction" />
 	<action-state id="performLoginAction">
 		 <evaluate expression="signUpService.performLogin(userModel)" />
@@ -39,8 +42,9 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" start-stat
    		
 		<action-state id="confirm">
         <!--Do some action on the form-->
-        <evaluate expression="signUpService.bindAndValidate(flowRequestContext,flowScope.user)"/>
-        <transition to="returnToController" />
+        <evaluate expression="signUpController.bindAndValidate(flowRequestContext,flowScope.user)"/>
+        <transition on="success" to="returnToController" />
+        <transition on="error" to="register"/>
    		</action-state>
 
    <end-state id="returnToController" view="externalRedirect:contextRelative:login" /> 
