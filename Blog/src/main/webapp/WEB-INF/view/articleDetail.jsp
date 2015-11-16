@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title>Article Details</title>
 </head>
 <body>
-Home
+<h4>Title</h4>${article.title}
+<h4>Title</h4>${article.content}
 </body>
 </html>

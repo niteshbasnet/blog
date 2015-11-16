@@ -1,5 +1,7 @@
 package mum.edu.blog.service;
 
+import java.util.List;
+
 import mum.edu.blog.domain.Article;
 import mum.edu.blog.repository.ArticleRepository;
 
@@ -14,5 +16,9 @@ public class ArticleService {
 
 	public Article findArticleById(long id) {
 		return articleRepository.findArticleById(id);
+	}
+
+	public List<Article> findArticlesByTag(String tag) {
+		return articleRepository.findArticleByTags(tag);
 	}
 }

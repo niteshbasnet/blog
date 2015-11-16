@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="header">
 			<ul>
-				<tiles:insertAttribute name="navigation" />
+				<tiles:insertAttribute name="menu" />
 			</ul>
 			<h3>Blog</h3>
 		</div>
@@ -39,7 +39,10 @@
 		<div class="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>
-
+	
+		<div style="float: right;">
+			<tiles:insertAttribute name="side_bar"/>
+		</div>
 	</div>
 </body>
 </html>

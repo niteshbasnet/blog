@@ -1,10 +1,12 @@
 package mum.edu.blog.controller;
 
+import mum.edu.blog.repository.ArticleRepository;
 import mum.edu.blog.repository.BlogRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BlogController {
@@ -12,9 +14,12 @@ public class BlogController {
 	@Autowired
 	BlogRepository blogRepository;
 
-	public ModelAndView findBlog(long id, ModelAndView mav) {
-		mav.addObject("blog", blogRepository.findBlogById(1));
-		mav.setViewName("home");
-		return mav;
+	@Autowired
+	ArticleRepository articleRepository;
+
+	@RequestMapping("/blogHome")
+	public String findBlog(Model model) {
+		model.addAttribute("articles", articleRepository.findAll());
+		return "blogHome";
 	}
 }
