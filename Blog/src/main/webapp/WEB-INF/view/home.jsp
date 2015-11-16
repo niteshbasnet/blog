@@ -5,8 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home</title>
+<body></body>
 </head>
 <body>
 Home
+${comment.title}
 </body>
 </html>
