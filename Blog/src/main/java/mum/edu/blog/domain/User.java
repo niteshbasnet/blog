@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -34,11 +35,18 @@ public class User {
 	@Column(unique=true)
 	private String email;
 	
+	@NotEmpty
+	@Column(unique=true)
+	private String username;
+	@NotEmpty
+	private String password;
+	private String authorization;
+	
 	@Transient
 	private MultipartFile userImage;
 	
-	@OneToOne
-	private Credential credential;
+//	@OneToOne
+//	private Credential credential;
 	
 	public User() {
 	}
@@ -48,13 +56,36 @@ public class User {
 		this.lastName = lastName;
 	}
 	
-	public Credential getCredential() {
-		return credential;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setCredential(Credential credential) {
-		this.credential = credential;
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getAuthorization() {
+		return authorization;
+	}
+
+	public void setAuthorization(String authorization) {
+		this.authorization = authorization;
+	}
+//	public Credential getCredential() {
+//		return credential;
+//	}
+//
+//	public void setCredential(Credential credential) {
+//		this.credential = credential;
+//	}
 
 	public Date getBirthDate() {
 		return birthDate;

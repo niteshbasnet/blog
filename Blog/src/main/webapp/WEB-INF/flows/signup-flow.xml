@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" start-state="prepareFlow">
+
+<action-state id="prepareFlow">
+    <evaluate expression="signUpService.prepareFlowForm()" result="flowScope.user"/>
+    <transition to="register" />
+</action-state>
+
+
+	<view-state id="register" view="/WEB-INF/view/signUp.jsp" model="user">
+		<transition on="submit" to="confirm"/>
+        <transition on="back" to="done"/>
+	</view-state>
+<!-- <transition on="userEntered" to="performLoginAction" />
+	<action-state id="performLoginAction">
+		 <evaluate expression="signUpService.performLogin(userModel)" />
+
+		<transition to="displayLoginSuccessView" /> 
+
+		 <transition
+			on-exception="Exception"
+			to="displayLoginErrorView" /> 
+		</action-state> -->
+
+	<!-- <view-state id="displayLoginSuccessView" view="/WEB-INF/view/addBlog.jsp" />
+
+	<view-state id="displayLoginErrorView" view="/WEB-INF/view/singUp.jsp" />
+	<end-state id="done" view="externalRedirect:contextRelative:login" /> -->
+
+
+	<!-- <view-state id="signUp"> <transition on="review" to="signupOrder"/> 
+		</view-state> <view-state id="signupOrder"> <transition on="confirm" to="done" 
+		/> <transition on="revise" to="signUpForm" /> <transition on="cancel" to="cancel" 
+		/> </view-state> <end-state id="done" view="externalRedirect:contextRelative:signup"/> 
+		<end-state id="cancel" /> -->
+   		
+		<action-state id="confirm">
+        <!--Do some action on the form-->
+        <evaluate expression="signUpService.bindAndValidate(flowRequestContext,flowScope.user)"/>
+        <transition to="returnToController" />
+   		</action-state>
+
+   <end-state id="returnToController" view="externalRedirect:contextRelative:login" /> 
+	<end-state id="done" view="externalRedirect:contextRelative:" />
+</flow> 
