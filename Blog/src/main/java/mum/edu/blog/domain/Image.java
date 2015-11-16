@@ -1,4 +1,4 @@
-package mum.edu.blog.domain;
+/*package mum.edu.blog.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +22,7 @@ public class Image {
 	@Column(name = "IMG_PATH")
 	private String imagePath;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ART_ID")
 	private Article article;
 
@@ -42,4 +42,4 @@ public class Image {
 		this.article = article;
 	}
 
-}
+}*/

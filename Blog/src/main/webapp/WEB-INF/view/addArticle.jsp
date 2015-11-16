@@ -8,7 +8,7 @@
 <title>Add Article</title>
 </head>
 <body>
-	<form:form modelAttribute="article" method="post">
+	<form:form modelAttribute="article" enctype="multipart/form-data" method="post">
 		<fieldset>
 			<div>
 				<p>
@@ -18,7 +18,15 @@
 				<p>
 					<strong>Content:</strong> <label><form:textarea path="content"	name="content" rows="10" cols="50"/></label>
 				</p>				
-
+				
+				<p>
+					<form:input path="articleImg" type="file" />
+				</p>
+				
+				<p>
+					<strong>Tags:</strong> <label><form:input path="tags"	name="tags" /></label>
+				</p>
+				
 				<input type="submit" value="Add" />
 			</div>
 		</fieldset>
