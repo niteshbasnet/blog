@@ -19,7 +19,7 @@
 			<div style="text-align: left;">
 
 
-				<form:form modelAttribute="user" action="${flowExecutionUrl}&_eventId=submit"
+				<form:form modelAttribute="user" action="${flowExecutionUrl}"
 					enctype="multipart/form-data">
 					<fieldset>
 					<%-- <input type="hidden" name="_flowExecutionId" value="<c:out value="${flowExecutionId}"/>"/> --%>
@@ -133,23 +133,28 @@
 
 								</td>
 							</tr>
-							<tr>
-								<td class="label"></td>
-
-								<td class="data">
-
-									<div>
-										<input type="submit" id="btnAdd"
-											value="<spring:message code="signup.btn"/>" />
-											<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
-											
-									</div>
-								</td>
-							</tr>
-
 						</table>
 
-
+						<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
+						<table width="30%" border="0" cellspacing="3" cellpadding="1">
+							<tr>
+								<td>
+									<button type="submit" id="next" name="_eventId_next">
+										<spring:message code="next" />
+									</button>
+								</td>
+								<td>
+									<button type="submit" id="save" name="_eventId_save">
+										<spring:message code="save" />
+									</button>
+								</td>
+								<td>
+									<button type="submit" id="cancel" name="_eventId_cancel">
+										<spring:message code="cancel" />
+									</button>
+								</td>
+							</tr>
+						</table>
 
 					</fieldset>
 				</form:form>

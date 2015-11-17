@@ -4,9 +4,12 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 
-<li><a href="<spring:url value="/blog"/>">Home</a></li>
-<li><a href="<spring:url value="/article/addArticle"/>">Add article</a></li>
-	
+<li><a href="<spring:url value="/"/>">Home</a></li>
+
+<security:authorize access="isAuthenticated()">
+<li><a href="<spring:url value="/blog/createblog"/>">Add Blog</a></li>
+<li><a href="<spring:url value="/article/addArticle"/>">Add Article</a></li>
+</security:authorize>
 	<div class="language">
 	<div style="position: relative; vertical-align: bottom; text-align:right; padding-top:10px">
 	 

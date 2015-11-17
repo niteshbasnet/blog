@@ -1,6 +1,7 @@
 package mum.edu.blog.service;
 
 import mum.edu.blog.domain.Blog;
+import mum.edu.blog.domain.User;
 import mum.edu.blog.repository.BlogRepository;
 
 import java.util.List;
@@ -33,5 +34,9 @@ public class BlogService {
 	public List<Blog> userBlogs(long id)
 	{
 		return blogRepository.getUserBlogs(id);
+	}
+	public Blog findByBlogName(String blogname)
+	{
+		return blogRepository.findFirstBlogByBlogName(blogname);
 	}
 }

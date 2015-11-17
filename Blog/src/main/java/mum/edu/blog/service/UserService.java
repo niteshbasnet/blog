@@ -35,7 +35,10 @@ public class UserService {
 	
 	public User findByUsername(String username)
 	{
-		return userRepository.findFirstUserByUsername(username);
+		System.out.println(username);
+		User newuser = userRepository.findFirstUserByUsername(username);
+		System.out.println(newuser);
+		return newuser;
 	}
 	
 	public User findById(long id)

@@ -11,28 +11,33 @@
 
 	<security:global-method-security pre-post-annotations="enabled"/>	
 	
+	<bean id="webexpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+		
 	<security:http pattern="/" security="none" />
 	<security:http pattern="/resources/**" security="none" />
 	<security:http pattern="/signup" security="none" />
-	 <security:http use-expressions="true" auto-config='true' disable-url-rewriting="false">
-	<!-- <security:csrf disabled="true"/> -->
+	<security:http pattern="/login" security="none" />
+	<security:http pattern="/loginfailed" security="none" />
+	 <security:http use-expressions="true" auto-config="true" disable-url-rewriting="false">
+	 <security:csrf disabled="true"/>
 	<!-- Need to redirect exception for web authorization -->
 <!-- 	<security:access-denied-handler error-page="/error-forbidden" />
 	 -->
 	 <!-- <security:intercept-url pattern="/movie/add" access="hasRole('ROLE_ADMIN')" />  --> 	
 	 <security:intercept-url pattern="/addArticle" access="hasRole('ROLE_ADMIN')" />  
 	 
+	 <security:intercept-url pattern="/blog/createblog" access="hasRole('ROLE_ADMIN') || hasRole('ROLE_USER')" /> 
 	 <security:intercept-url pattern="/login" access="permitAll" />
 	 <security:intercept-url pattern="/loginfailed" access="permitAll" />
  		
  		<security:form-login
- 		
  		login-page="/login" 
 		authentication-failure-url="/loginfailed"
 		username-parameter="j_username" 
 		password-parameter="j_password"
 		login-processing-url="/j_spring_security_check"
-		default-target-url="/blog" />
+		default-target-url="/" />
         <security:logout logout-url="/j_spring_security_logout"/>
         
 	</security:http>
