@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<link href="<c:url value="/resource/css/style.css"/>" rel="stylesheet">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 
