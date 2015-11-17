@@ -1,5 +1,6 @@
 package mum.edu.blog.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +29,9 @@ public class Blog {
 	@Column(name = "DESCP")
 	private String description;
 
+	@ManyToMany(mappedBy="blogList")
+	private List<User> userList = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "blog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Article> articleList;
 

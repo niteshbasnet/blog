@@ -142,7 +142,7 @@
 										<input type="submit" id="btnAdd"
 											value="<spring:message code="signup.btn"/>" />
 											<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
-											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+											
 									</div>
 								</td>
 							</tr>
