@@ -11,8 +11,6 @@
    var files=${json};
    var comment=files.commentobj;
    alert(comment);
-  
-
 </script>
 </head>
 <body>
