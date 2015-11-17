@@ -5,6 +5,11 @@ public class Navigation {
 	private String linkName;
 	private String linkURL;
 
+	public Navigation(String linkName, String linkURL) {
+		this.linkName = linkName;
+		this.linkURL = linkURL;
+	}
+
 	public String getLinkName() {
 		return linkName;
 	}

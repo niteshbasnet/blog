@@ -1,10 +1,14 @@
 package mum.edu.blog.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import mum.edu.blog.domain.Article;
-import mum.edu.blog.service.ArticleService;
+import mum.edu.blog.domain.Comment;
 import mum.edu.blog.repository.ArticleRepository;
+import mum.edu.blog.repository.CommentRepository;
+import mum.edu.blog.service.ArticleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/article")
@@ -25,6 +30,9 @@ public class ArticleController {
 	@Autowired
 	ArticleService articleService;
 
+	@Autowired
+	CommentRepository commentRepository;
+	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String articleHome(@ModelAttribute Article article) {
 		return "addArticle";
@@ -58,9 +66,23 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = { "/{id}" }, method = RequestMethod.GET)
-	public String articleDetail(@PathVariable("id") long id, Model model) {
-		model.addAttribute("article", articleRepository.findArticleById(id));
+	public String articleDetail(@PathVariable("id") long articleId, @ModelAttribute Comment comment, Model model) {
+		Article article = articleRepository.findArticleById(articleId);
+		model.addAttribute("comments",commentRepository.findCommentByArticle(article));
+		model.addAttribute("article", article);
 		return "articleDetail";
+	}
+	
+	@RequestMapping(value = { "/{id}/addComment" }, method = RequestMethod.POST)
+	public String articleComment(@PathVariable("id") long articleId, @ModelAttribute Comment comment, RedirectAttributes redirect) {		
+		Article article = articleService.findArticleById(articleId);
+		comment.setArticle(article);
+		List<Comment> commentList = new ArrayList<Comment>();
+		article.setComment(commentList);
+		commentRepository.save(comment);
+		redirect.addFlashAttribute("comments",commentRepository.findCommentByArticle(article));
+		redirect.addFlashAttribute("article", article);
+		return "redirect:articleDetail";
 	}
 
 	@RequestMapping(value = { "/tag/{tag}" }, method = RequestMethod.GET)
@@ -68,4 +90,5 @@ public class ArticleController {
 		model.addAttribute("articles", articleService.findArticlesByTag(tag));
 		return "blogHome";
 	}
+	
 }

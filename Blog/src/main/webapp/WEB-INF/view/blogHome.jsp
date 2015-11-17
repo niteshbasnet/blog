@@ -10,14 +10,15 @@
 <title>Home</title>
 </head>
 <body>
+Welcome ${userName} <br/>
 	<c:forEach var="article" items="${articles}">
 		<a href="<spring:url value="/article/${article.id}"/>">${article.title}
 		</a>
-		</br>tags : [
+		<br/>tags : [
 		<c:forEach var="tag" items="${article.tags}">
 			<a href="<spring:url value="/article/tag/${tag}"/>"> #${tag}</a>,		
 		</c:forEach>
-		]</br></br>
+		]<br/><br/>
 	</c:forEach>
 </body>
 </html>

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -49,6 +50,10 @@ public class Article {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "BLG_ID")
 	private Blog blog;
+
+	@OneToMany(mappedBy = "article")
+	@Column(name = "COMMENT")
+	private List<Comment> comment;
 
 	public long getId() {
 		return id;
@@ -104,6 +109,22 @@ public class Article {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
 	}
 
 }

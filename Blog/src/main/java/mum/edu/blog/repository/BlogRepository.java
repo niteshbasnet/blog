@@ -14,4 +14,5 @@ public interface BlogRepository extends JpaRepository<Blog, Long>{
 	
 	@Query("select b from Blog b INNER JOIN b.userList u where u.id=:id")
 	public List<Blog> getUserBlogs(@Param("id") long id);
+
 }
