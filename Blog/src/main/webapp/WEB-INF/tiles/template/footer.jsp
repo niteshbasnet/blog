@@ -1,1 +1,1 @@
-<p>&copy; Blog 2015</p>
+<p class="a">&copy; Blog 2015</p>

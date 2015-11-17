@@ -14,7 +14,7 @@
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 
-<body>
+<body class="container">
 	<div class="container">
 		<div class="header">
 			<ul>
@@ -35,14 +35,14 @@
 		<div class="row">
 			<tiles:insertAttribute name="body" />
 		</div>
-
-		<div class="footer">
+		<div>
+			<tiles:insertAttribute name="side_bar"/>
+		</div>
+		
+	</div>
+	<div class="footer" style="clear:both;">
 			<tiles:insertAttribute name="footer" />
 		</div>
 	
-		<div style="float: right;">
-			<tiles:insertAttribute name="side_bar"/>
-		</div>
-	</div>
 </body>
 </html>
