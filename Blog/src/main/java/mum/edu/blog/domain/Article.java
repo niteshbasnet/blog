@@ -27,8 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "ARTICLE")
 public class Article implements Serializable {
 
-	private static final long serialVersionUID = -4301585239329431807L;	
-	
+	private static final long serialVersionUID = -4301585239329431807L;
+
 	public Article() {
 	}
 
@@ -49,7 +49,7 @@ public class Article implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ART_ID")
 	private long id;
-	
+
 	@Column(name = "TITLE")
 	private String title;
 
@@ -63,7 +63,8 @@ public class Article implements Serializable {
 	private MultipartFile articleImg;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "ART_TAG")
+	@CollectionTable(name = "ART_TAG", joinColumns = @JoinColumn(name = "ART_ID"))
+	@Column(name = "TAGS")
 	private List<String> tags;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -75,7 +76,7 @@ public class Article implements Serializable {
 	@JoinColumn(name = "BLG_ID")
 	private Blog blog;
 
-	@OneToMany(mappedBy = "article",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
 	private List<Comment> comment;
 
 	public long getId() {
@@ -150,8 +151,13 @@ public class Article implements Serializable {
 		this.comment = comment;
 	}
 
-	public void addComment(Comment comment){
+	public void addComment(Comment comment) {
 		comment.setArticle(this);
 		this.comment.add(comment);
+	}
+	
+	@Override
+	public String toString(){
+		return "Article id :"+this.id+" Article title:"+this.title;
 	}
 }

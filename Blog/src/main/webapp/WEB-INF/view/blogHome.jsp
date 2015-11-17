@@ -10,7 +10,6 @@
 <title>Home</title>
 </head>
 <body>
-Welcome ${userName} <br/>
 	<c:forEach var="article" items="${articles}">
 		<a href="<spring:url value="/article/articleDetail/${article.id}"/>">${article.title}</a><br/>
 		Date: ${article.date}

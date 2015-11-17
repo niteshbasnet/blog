@@ -31,11 +31,19 @@
 	
 	<definition name="articleDetail" extends="baseLayout">
 		<put-attribute name="title" value="Article Detail" />
-		<put-attribute name="heading" value="Article Detail" />
+		<put-attribute name="heading" value="" />
 		<put-attribute name="side_bar" value="nav.bar" />
 		<put-attribute name="tagline" value="Article Detail" />
 		<put-attribute name="body" value="/WEB-INF/view/articleDetail.jsp" />
 	</definition>
+	
+	<definition name="login" extends="baseLayout">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="heading" value="Login" />
+		<put-attribute name="side_bar" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/login.jsp" />
+	</definition>	
 		
 	<definition name="nav.bar" preparer="navPreparer" template="/WEB-INF/tiles/template/side_bar.jsp" />
 </tiles-definitions>

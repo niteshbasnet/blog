@@ -10,7 +10,9 @@ import mum.edu.blog.repository.ArticleRepository;
 import mum.edu.blog.repository.CommentRepository;
 import mum.edu.blog.service.ArticleService;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,7 +25,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
-
+	
+	private final static Logger LOGGER = Logger.getLogger(ArticleController.class);
+	
+	@Value("${image.path}")
+	private String path;
+	
 	@Autowired
 	ArticleRepository articleRepository;
 
@@ -45,17 +52,14 @@ public class ArticleController {
 
 	@RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
 	public String addArticle(@ModelAttribute Article article, RedirectAttributes redirect) {
+		LOGGER.info("article id:::::"+article.toString());
 		Date date= new java.util.Date();
 		article.setDate(new Timestamp(date.getTime()));
-		MultipartFile studentImage = article.getArticleImg();
-		if (studentImage != null && !studentImage.isEmpty()) {
+		MultipartFile articleImg = article.getArticleImg();
+		if (articleImg != null && !articleImg.isEmpty()) {
 			try {
-				System.out.println("addimage try");
-				studentImage.transferTo(new File("d:\\images\\article_image\\"
-						+ article.getId() + ".png"));
-
-				article.setArticleImage("d:\\images\\article_image\\"
-						+ article.getId() + ".png");
+				articleImg.transferTo(new File(path+ article.getId() + ".png"));
+				article.setArticleImage(path+ article.getId() + ".png");
 			} catch (Exception e) {
 				throw new RuntimeException("Article Image saving failed", e);
 			}
@@ -63,7 +67,7 @@ public class ArticleController {
 
 		articleRepository.save(article);
 		redirect.addFlashAttribute("articles", articleRepository.findAll());
-		return "redirect:/blogHome";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = { "/articleDetail/{id}" }, method = RequestMethod.GET)

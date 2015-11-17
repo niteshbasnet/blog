@@ -33,4 +33,8 @@ public class ArticleService {
 	public Article findArticleByBlogAndId(Blog blog, long articleId) {
 		return articleRepository.findArticleByBlogAndId(blog, articleId);
 	}
+
+	public List<Article> findAll() {
+		return articleRepository.findAll();
+	}
 }
