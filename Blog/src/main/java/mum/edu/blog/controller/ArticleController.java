@@ -1,8 +1,8 @@
 package mum.edu.blog.controller;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import mum.edu.blog.domain.Article;
 import mum.edu.blog.domain.Comment;
@@ -10,7 +10,9 @@ import mum.edu.blog.repository.ArticleRepository;
 import mum.edu.blog.repository.CommentRepository;
 import mum.edu.blog.service.ArticleService;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,7 +25,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
-
+	
+	private final static Logger LOGGER = Logger.getLogger(ArticleController.class);
+	
+	@Value("${image.path}")
+	private String path;
+	
 	@Autowired
 	ArticleRepository articleRepository;
 
@@ -44,45 +51,39 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
-	public String addArticle(@ModelAttribute Article article, Model model) {
-
-		MultipartFile studentImage = article.getArticleImg();
-		if (studentImage != null && !studentImage.isEmpty()) {
+	public String addArticle(@ModelAttribute Article article, RedirectAttributes redirect) {
+		LOGGER.info("article id:::::"+article.toString());
+		Date date= new java.util.Date();
+		article.setDate(new Timestamp(date.getTime()));
+		MultipartFile articleImg = article.getArticleImg();
+		if (articleImg != null && !articleImg.isEmpty()) {
 			try {
-				System.out.println("addimage try");
-				studentImage.transferTo(new File("d:\\images\\article_image\\"
-						+ article.getId() + ".png"));
-
-				article.setArticleImage("d:\\images\\article_image\\"
-						+ article.getId() + ".png");
+				articleImg.transferTo(new File(path+ article.getId() + ".png"));
+				article.setArticleImage(path+ article.getId() + ".png");
 			} catch (Exception e) {
 				throw new RuntimeException("Article Image saving failed", e);
 			}
 		}
 
 		articleRepository.save(article);
-		model.addAttribute("articles", articleRepository.findAll());
-		return "redirect:/blogHome";
+		redirect.addFlashAttribute("articles", articleRepository.findAll());
+		return "redirect:/";
 	}
 
-	@RequestMapping(value = { "/{id}" }, method = RequestMethod.GET)
-	public String articleDetail(@PathVariable("id") long articleId, @ModelAttribute Comment comment, Model model) {
+	@RequestMapping(value = { "/articleDetail/{id}" }, method = RequestMethod.GET)
+	public String articleDetail(@PathVariable("id") long articleId, Model model) {
 		Article article = articleRepository.findArticleById(articleId);
 		model.addAttribute("comments",commentRepository.findCommentByArticle(article));
 		model.addAttribute("article", article);
+		model.addAttribute("comment",new Comment());
 		return "articleDetail";
 	}
 	
 	@RequestMapping(value = { "/{id}/addComment" }, method = RequestMethod.POST)
-	public String articleComment(@PathVariable("id") long articleId, @ModelAttribute Comment comment, RedirectAttributes redirect) {		
-		Article article = articleService.findArticleById(articleId);
-		comment.setArticle(article);
-		List<Comment> commentList = new ArrayList<Comment>();
-		article.setComment(commentList);
-		commentRepository.save(comment);
-		redirect.addFlashAttribute("comments",commentRepository.findCommentByArticle(article));
-		redirect.addFlashAttribute("article", article);
-		return "redirect:articleDetail";
+	public String articleComment(@PathVariable("id") long articleId, @ModelAttribute Comment comment, Model model) {
+		Date date= new java.util.Date();
+		commentRepository.insertComment(comment.getComment(), new Timestamp(date.getTime()), articleId);
+		return "redirect:/article/articleDetail/"+articleId;
 	}
 
 	@RequestMapping(value = { "/tag/{tag}" }, method = RequestMethod.GET)

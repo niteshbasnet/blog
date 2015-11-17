@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <tiles:importAttribute name="navList" />
+<field class="myfield">
 <ul>
 	<li><a href="<spring:url value="/blog"/>">Home</a></li>
 	<li>Blog List
@@ -13,3 +14,4 @@
 		</ul>
 	</li>
 </ul>
+</field>

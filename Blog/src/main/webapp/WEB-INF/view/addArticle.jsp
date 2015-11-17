@@ -9,14 +9,15 @@
 </head>
 <body>
 	<form:form modelAttribute="article" enctype="multipart/form-data" method="post">
+		<div class="myform">
 		<fieldset>
-			<div>
+		
 				<p>
-					<strong>Title:</strong> <label><form:input path="title"	name="title" /></label>
+					<strong>Title:</strong> <label><form:input path="title"	name="title" class="txtBox"/></label>
 				</p>
 				
 				<p>
-					<strong>Content:</strong> <label><form:textarea path="content"	name="content" rows="10" cols="50"/></label>
+					<strong>Content:</strong> <label><form:textarea path="content"	name="content" rows="10" cols="50" class="txtArea"/></label>
 				</p>				
 				
 				<p>
@@ -24,12 +25,13 @@
 				</p>
 				
 				<p>
-					<strong>Tags:</strong> <label><form:input path="tags"	name="tags" /></label>
+					<strong>Tags:</strong> <label><form:input path="tags"	name="tags" class="txtBox"/></label>
 				</p>
 				
 				<input type="submit" value="Add" />
-			</div>
+			
 		</fieldset>
+		</div>
 	</form:form>
 </body>
 </html>

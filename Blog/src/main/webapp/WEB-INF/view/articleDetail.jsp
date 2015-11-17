@@ -6,27 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Article Details</title>
+<title></title>
 </head>
 <body>
-	Welcome ${userName}
-	<h4>Title</h4>${article.title}
-	<h4>Title</h4>${article.content}
 
-	<c:forEach var="comment" items="${comments}">
-		<fieldset>
-			${comment.comment}
-		</fieldset>
-	</c:forEach>
-	<form:form modelAttribute="comment"
-		action="/blog/article/${article.id}/addComment" method="post">
-		<fieldset>
-			<p>
-				<strong>Comment:</strong> <label><form:textarea
-						path="comment" name="comment" rows="10" cols="30" /></label>
-			</p>
-			<input type="submit" value="Add" />
-		</fieldset>
-	</form:form>
+	<div class="body">
+		<div class="article">
+			<h3>${article.title}</h3>
+			<h4>Content</h4>${article.content}
+		</div>
+		<div class="comment">
+			<c:forEach var="comment" items="${comments}">
+				<fieldset>
+					<p>${comment.comment}</p>
+					<br />
+					<p>${comment.date}</p>
+
+				</fieldset>
+			</c:forEach>
+		</div>
+
+		<form:form modelAttribute="comment"
+			action="/blog/article/${article.id}/addComment" method="post">
+			<fieldset>
+				<p>
+					<strong>Comment:</strong> <label><form:textarea
+							path="comment" name="comment" rows="10" cols="30" /></label>
+				</p>
+				<input type="submit" value="Add" />
+			</fieldset>
+		</form:form>
+
+	</div>
 </body>
 </html>

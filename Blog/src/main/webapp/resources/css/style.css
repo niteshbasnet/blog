@@ -1,0 +1,57 @@
+@CHARSET "ISO-8859-1";
+
+
+ .myhead{
+	display:inline;
+	margin: 0 1em 0 0;
+	font-size:20px;
+}
+
+.myform{
+	float:left;
+}
+
+.myfield{
+	float:right;
+}
+
+
+
+.txtBox{
+	background-color : #99FFCC;
+	border: 1px solid #008000;
+	width: 230px;
+	height: 22px;
+	
+}
+
+.txtArea{
+	border:2px solid #456879;
+	border-radius:10px;
+	background-color : #99FFCC;
+}
+field{
+	border:2px solid #456879;
+	border-radius:10px;
+	background-color : #339999;
+	padding:5px;
+}
+
+fieldset{
+	border:2px solid #456879;
+	border-radius:10px;
+	background-color : #339999;
+	padding: 5px;
+}
+
+body {
+    background-image: url("webimg.jpg");
+   
+}
+
+input {
+  color: #900;
+  font-weight: bold;
+}
+
+
