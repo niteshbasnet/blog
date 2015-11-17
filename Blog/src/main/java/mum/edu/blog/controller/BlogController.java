@@ -33,9 +33,11 @@ public class BlogController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String findBlog(Model model, Principal principal) {
+		//String name = principal.getName();
 //		String name = principal.getName();
 		Blog blog = blogService.findBlogById(blogid);
 		model.addAttribute("articles",articleService.findArticleByBlog(blog));
+		//model.addAttribute("userName", name);
 //		model.addAttribute("userName", name);
 		model.addAttribute("blogid", blogid);
 		return "blogHome";
