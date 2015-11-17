@@ -2,6 +2,8 @@ package mum.edu.blog.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import mum.edu.blog.domain.Article;
 import mum.edu.blog.domain.Blog;
 import mum.edu.blog.repository.ArticleRepository;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class ArticleService {
 
 	@Autowired

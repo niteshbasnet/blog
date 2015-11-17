@@ -1,8 +1,8 @@
 package mum.edu.blog.controller;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import mum.edu.blog.domain.Article;
 import mum.edu.blog.domain.Comment;
@@ -44,8 +44,9 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
-	public String addArticle(@ModelAttribute Article article, Model model) {
-
+	public String addArticle(@ModelAttribute Article article, RedirectAttributes redirect) {
+		Date date= new java.util.Date();
+		article.setDate(new Timestamp(date.getTime()));
 		MultipartFile studentImage = article.getArticleImg();
 		if (studentImage != null && !studentImage.isEmpty()) {
 			try {
@@ -61,28 +62,24 @@ public class ArticleController {
 		}
 
 		articleRepository.save(article);
-		model.addAttribute("articles", articleRepository.findAll());
+		redirect.addFlashAttribute("articles", articleRepository.findAll());
 		return "redirect:/blogHome";
 	}
 
-	@RequestMapping(value = { "/{id}" }, method = RequestMethod.GET)
-	public String articleDetail(@PathVariable("id") long articleId, @ModelAttribute Comment comment, Model model) {
+	@RequestMapping(value = { "/articleDetail/{id}" }, method = RequestMethod.GET)
+	public String articleDetail(@PathVariable("id") long articleId, Model model) {
 		Article article = articleRepository.findArticleById(articleId);
 		model.addAttribute("comments",commentRepository.findCommentByArticle(article));
 		model.addAttribute("article", article);
+		model.addAttribute("comment",new Comment());
 		return "articleDetail";
 	}
 	
 	@RequestMapping(value = { "/{id}/addComment" }, method = RequestMethod.POST)
-	public String articleComment(@PathVariable("id") long articleId, @ModelAttribute Comment comment, RedirectAttributes redirect) {		
-		Article article = articleService.findArticleById(articleId);
-		comment.setArticle(article);
-		List<Comment> commentList = new ArrayList<Comment>();
-		article.setComment(commentList);
-		commentRepository.save(comment);
-		redirect.addFlashAttribute("comments",commentRepository.findCommentByArticle(article));
-		redirect.addFlashAttribute("article", article);
-		return "redirect:articleDetail";
+	public String articleComment(@PathVariable("id") long articleId, @ModelAttribute Comment comment, Model model) {
+		Date date= new java.util.Date();
+		commentRepository.insertComment(comment.getComment(), new Timestamp(date.getTime()), articleId);
+		return "redirect:/article/articleDetail/"+articleId;
 	}
 
 	@RequestMapping(value = { "/tag/{tag}" }, method = RequestMethod.GET)

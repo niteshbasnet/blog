@@ -25,7 +25,7 @@ public class NavigationService {
 		List<Article> articleList = articleRepository.findArticleByBlog(blog);
 		List<Navigation> navList = new ArrayList<Navigation>();
 		for (Article article : articleList) {
-			navList.add(new Navigation(article.getTitle(),"/blog/"+blogid+"/"+article.getId()));
+			navList.add(new Navigation(article.getTitle(),"/blog/"+blogid+"/articleDetail/"+article.getId()));
 		}
 		return navList;
 	}

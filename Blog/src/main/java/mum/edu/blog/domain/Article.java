@@ -1,6 +1,7 @@
 package mum.edu.blog.domain;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -15,19 +16,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "ARTICLE")
-public class Article {
+public class Article implements Serializable {
+
+	private static final long serialVersionUID = -4301585239329431807L;	
+	
+	public Article() {
+	}
+
+	public Article(String title, String content, String articleImage,
+			MultipartFile articleImg, List<String> tags, Date date, Blog blog,
+			List<Comment> comment) {
+		this.title = title;
+		this.content = content;
+		this.articleImage = articleImage;
+		this.articleImg = articleImg;
+		this.tags = tags;
+		this.date = date;
+		this.blog = blog;
+		this.comment = comment;
+	}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ART_ID")
 	private long id;
-
+	
 	@Column(name = "TITLE")
 	private String title;
 
@@ -44,6 +66,8 @@ public class Article {
 	@CollectionTable(name = "ART_TAG")
 	private List<String> tags;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd.MM")
 	@Column(name = "POST_DATE")
 	private Date date;
 
@@ -51,8 +75,7 @@ public class Article {
 	@JoinColumn(name = "BLG_ID")
 	private Blog blog;
 
-	@OneToMany(mappedBy = "article")
-	@Column(name = "COMMENT")
+	@OneToMany(mappedBy = "article",fetch=FetchType.LAZY)
 	private List<Comment> comment;
 
 	public long getId() {
@@ -127,4 +150,8 @@ public class Article {
 		this.comment = comment;
 	}
 
+	public void addComment(Comment comment){
+		comment.setArticle(this);
+		this.comment.add(comment);
+	}
 }

@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @RequestMapping("/blog")
-@SessionAttributes("userName")
+//@SessionAttributes("userName")
 public class BlogController {
 	private long blogid = 1L;
 	@Autowired
@@ -34,15 +33,15 @@ public class BlogController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String findBlog(Model model, Principal principal) {
-		String name = principal.getName();
+//		String name = principal.getName();
 		Blog blog = blogService.findBlogById(blogid);
 		model.addAttribute("articles",articleService.findArticleByBlog(blog));
-		model.addAttribute("userName", name);
+//		model.addAttribute("userName", name);
 		model.addAttribute("blogid", blogid);
 		return "blogHome";
 	}
 	
-	@RequestMapping("{blogid}/{articleid}")
+	@RequestMapping("{blogid}/articleDetail/{articleid}")
 	public String findArticleByBlog(@PathVariable("blogid") long blogId, @PathVariable("articleid") long articleId, 
 			@ModelAttribute Comment comment, Model model){
 		Blog blog = blogService.findBlogById(blogId);

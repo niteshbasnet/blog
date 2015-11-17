@@ -15,7 +15,9 @@
 
 	<c:forEach var="comment" items="${comments}">
 		<fieldset>
-			${comment.comment}
+			<p>${comment.comment}</p><br/>
+			<p>${comment.date}</p>
+			
 		</fieldset>
 	</c:forEach>
 	<form:form modelAttribute="comment"
