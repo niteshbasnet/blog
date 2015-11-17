@@ -42,8 +42,8 @@ public class User implements Serializable {
 	@NotEmpty
 	private String lastName;
 
-	@Range(max = 500)
-	@Column(length = 500)
+//	@Range(max = 500)
+//	@Column(columnDefinition="length = 500")
 	private String bio;
 
 	@Temporal(TemporalType.DATE)
@@ -59,7 +59,7 @@ public class User implements Serializable {
 
 	@NotEmpty
 	@Column(unique = true)
-	@Pattern(regexp = "/^[a-z0-9_-]{3,16}$/")
+//	@Pattern(regexp = "/^[a-z0-9_-]{3,16}$/")
 	private String username;
 	@NotEmpty
 	private String password;
