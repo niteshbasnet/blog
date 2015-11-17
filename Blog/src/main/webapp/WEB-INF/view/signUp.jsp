@@ -19,10 +19,10 @@
 			<div style="text-align: left;">
 
 
-				<form:form modelAttribute="newUser" action="signup"
+				<form:form modelAttribute="user" action="${flowExecutionUrl}&_eventId=submit"
 					enctype="multipart/form-data">
 					<fieldset>
-
+					<%-- <input type="hidden" name="_flowExecutionId" value="<c:out value="${flowExecutionId}"/>"/> --%>
 						<form:errors path="*" cssStyle="color:red;" element="div" />
 						<table>
 							<tr>
@@ -62,7 +62,21 @@
 									</div>
 								</td>
 							</tr>
+							
+							<tr>
 
+								<td class="label"><label for="bio"><spring:message
+											code="register.bio.label" /></label></td>
+
+								<td class="data">
+									<div>
+										<form:textarea id="bio" path="bio" type="text" rows="5" />
+										<form:errors path="bio" cssStyle="color:red;" />
+									</div>
+
+								</td>
+							</tr>
+							
 							<tr>
 
 								<td class="label"><label for="email"><spring:message
@@ -91,30 +105,30 @@
 							</tr>
 							<tr>
 
-								<td class="label"><label for="credential.username"><spring:message
+								<td class="label"><label for="username"><spring:message
 											code="register.credential.username.label" /></label></td>
 
 								<td class="data">
 									<div>
-										<form:input id="credential.username"
-											path="credential.username" type="text" />
-										<form:errors path="credential.username" cssStyle="color:red;" />
-									
-										<form:hidden path="credential.authorization" value="user"/>
+										<form:input id="username"
+											path="username" type="text" />
+										<form:errors path="username" cssStyle="color:red;" />
+										<form:hidden path="enabled" value="True"/>
+										<form:hidden path="authority" value="ROLE_USER"/>
 									</div>
 
 								</td>
 							</tr>
 							<tr>
 
-								<td class="label"><label for="credential.password"><spring:message
+								<td class="label"><label for="password"><spring:message
 											code="register.credential.password.label" /></label></td>
 
 								<td class="data">
 									<div>
-										<form:input id="credential.password"
-											path="credential.password" type="password" />
-										<form:errors path="credential.password" cssStyle="color:red;" />
+										<form:input id="password"
+											path="password" type="password" />
+										<form:errors path="password" cssStyle="color:red;" />
 									</div>
 
 								</td>
@@ -127,6 +141,8 @@
 									<div>
 										<input type="submit" id="btnAdd"
 											value="<spring:message code="signup.btn"/>" />
+											<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 									</div>
 								</td>
 							</tr>

@@ -1,5 +1,6 @@
 package mum.edu.blog.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,26 +12,38 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 504008235085587047L;
+
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
+	@NotEmpty
 	private String firstName;
+	@NotEmpty
 	private String lastName;
 	
 	private String bio;
 	
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	@Past
+	@NotNull
 	private Date birthDate;
 	
+	@NotEmpty
 	@Email
 	@Column(unique=true)
 	private String email;
@@ -40,14 +53,24 @@ public class User {
 	private String username;
 	@NotEmpty
 	private String password;
-	private String authorization;
+	private String authority;
 	
-	@Transient
-	private MultipartFile userImage;
+//	@Transient
+	private transient MultipartFile userImage;
 	
 //	@OneToOne
 //	private Credential credential;
 	
+	private Boolean enabled;
+	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public User() {
 	}
 	
@@ -72,13 +95,7 @@ public class User {
 		this.password = password;
 	}
 	
-	public String getAuthorization() {
-		return authorization;
-	}
-
-	public void setAuthorization(String authorization) {
-		this.authorization = authorization;
-	}
+	
 //	public Credential getCredential() {
 //		return credential;
 //	}
@@ -86,6 +103,14 @@ public class User {
 //	public void setCredential(Credential credential) {
 //		this.credential = credential;
 //	}
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
 
 	public Date getBirthDate() {
 		return birthDate;
