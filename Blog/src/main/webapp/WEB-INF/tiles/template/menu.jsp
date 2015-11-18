@@ -16,12 +16,12 @@
 
 			<security:authorize access="isAuthenticated()">
 				<li><a href="<spring:url value="/blog/createblog"/>">Add Blog</a></li>
+				<li><c:if test="${blogid>0}"><a href="<spring:url value='/article/addArticle'/>" >Add Article</a></c:if></li>
+				
 			</security:authorize>
 			<security:authorize access="isAnonymous()">
- 							 <li><a href="<spring:url value='/signup' />" >Create Own Blog</a> 
- 							<li><li>
- 							<a href="<spring:url value='/login' />" >Login</a>
- 							<li>
+ 							<li><a href="<spring:url value='/signup' />" >Create Own Blog</a></li>
+ 							<li><a href="<spring:url value='/login' />" >Login</a></li>			
  							
 				</security:authorize>
 		</ul>

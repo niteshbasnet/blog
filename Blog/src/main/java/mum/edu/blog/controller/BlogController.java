@@ -2,7 +2,6 @@ package mum.edu.blog.controller;
 
 import java.security.Principal;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import mum.edu.blog.domain.Article;
@@ -15,9 +14,7 @@ import mum.edu.blog.service.CommentService;
 import mum.edu.blog.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.binding.message.MessageBuilder;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,12 +22,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/blog")
-//@SessionAttributes("userName")
+@SessionAttributes("blogid")
 public class BlogController {
-	private long blogid = 1L;
+//	private long blogid = 1L;
 	@Autowired
 	BlogService blogService;
 
@@ -43,12 +42,10 @@ public class BlogController {
 	@Autowired
 	CommentService commentService;
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String findBlog(Model model, Principal principal) {
-		
+	@RequestMapping("/blogHome")
+	public String blogHome(Model model, Principal principal){
 		model.addAttribute("articles",articleService.findAll());
 		
-		System.out.println("===================="+principal);
 		if(principal !=null){
 			User user = userService.findByUsername(principal.getName());
 			
@@ -58,6 +55,12 @@ public class BlogController {
 			}
 		}
 		return "home";
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String findBlog(Model model, Principal principal, SessionStatus status) {
+		status.setComplete();
+		return "redirect:/blog/blogHome";
 	}
 	
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
@@ -90,7 +93,7 @@ public class BlogController {
 		
 	}
 	
-	@RequestMapping("{blogid}/{articleid}")
+	@RequestMapping("{blogid}/articleDetail/{articleid}")
 	public String findArticleByBlog(@PathVariable("blogid") long blogId, @PathVariable("articleid") long articleId, 
 			@ModelAttribute Comment comment, Model model){
 		Blog blog = blogService.findBlogById(blogId);
@@ -99,11 +102,14 @@ public class BlogController {
 		model.addAttribute("article", article);
 		return "articleDetail";
 	}
+
 	@RequestMapping("/{blogname}")
-	public String Showblog(@PathVariable("blogname") String blogName, Model model){
+	public String showblog(@PathVariable("blogname") String blogName, Model model){
 		Blog blog = blogService.findByBlogName(blogName);
 		model.addAttribute("articles",articleService.findArticleByBlog(blog));
-		
+		model.addAttribute("blogid",blog.getId());
 		return "blogHome";
 	}
+	
+	
 }
