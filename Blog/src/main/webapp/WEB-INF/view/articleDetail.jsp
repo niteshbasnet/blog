@@ -33,7 +33,7 @@
 				<strong>Comment:</strong> <label><form:textarea
 						path="comment" name="comment" rows="10" cols="30" /></label>
 			</p>
-			<input type="submit" value="Add" />
+			<input type="submit" value="Add" class = "btn btn-primary"/>
 		</fieldset>
 	</form:form>
 
