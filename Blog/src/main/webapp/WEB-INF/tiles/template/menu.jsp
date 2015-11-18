@@ -4,8 +4,6 @@
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 
-
-<div class="blog-masthead">
 	<div
 		style="position: relative; vertical-align: bottom; text-align: right; padding-top: 10px">
 
@@ -15,7 +13,10 @@
 			<li><a href="<spring:url value="/"/>">Home</a></li>
 
 			<security:authorize access="isAuthenticated()">
+			
 				<li><a href="<spring:url value="/blog/createblog"/>">Add Blog</a></li>
+				
+				<li><a href="<spring:url value='/doLogout' />" >Logout</a><li>
 			</security:authorize>
 			<security:authorize access="isAnonymous()">
  							 <li><a href="<spring:url value='/signup' />" >Create Own Blog</a> 
@@ -26,16 +27,15 @@
 				</security:authorize>
 		</ul>
 
-		<security:authorize access="isAuthenticated()">
+		 <security:authorize access="isAuthenticated()">
   					Welcome  <security:authentication property="principal.username" />
-			<form method="post"
+		<%--	<form method="post"
 				action="<spring:url value='/j_spring_security_logout' />">
 
 				<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>"
-					value="<c:out value="${_csrf.token}"/>" /> <input type="submit"
-					value="Log out" />
+					value="<c:out value="${_csrf.token}"/>" /> 
+					<input type="submit" value="Log out" />
 			</form>
-
-		</security:authorize>
+--%>
+		</security:authorize> 
 	</div>
-</div>

@@ -16,7 +16,7 @@
 
 	<div
 		style="width: 100%; margin: auto; text-align: center; padding: 20px">
-		<div style="padding-left: 200px; padding-bottom:50px; width: 900px;" class="panel panel-default">
+		<div style="padding-left: 200px; padding-bottom:50px;" >
 			<div style="text-align: left;" >
 
 
@@ -135,9 +135,9 @@
 								</td>
 							</tr>
 						</table>
-
+<br/>
 						<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
-						<table width="30%" border="0" cellspacing="3" cellpadding="1">
+						<table width="50%" border="0" cellspacing="3" cellpadding="1">
 							<tr>
 								<td>
 									<button type="submit" id="next" name="_eventId_next" class = "btn btn-primary">
