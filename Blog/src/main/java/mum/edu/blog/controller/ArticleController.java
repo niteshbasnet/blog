@@ -3,29 +3,33 @@ package mum.edu.blog.controller;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 import mum.edu.blog.domain.Article;
+import mum.edu.blog.domain.Blog;
 import mum.edu.blog.domain.Comment;
 import mum.edu.blog.repository.ArticleRepository;
 import mum.edu.blog.repository.CommentRepository;
 import mum.edu.blog.service.ArticleService;
+import mum.edu.blog.service.BlogService;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/article")
+@SessionAttributes("blogid")
 public class ArticleController {
 	
 	private final static Logger LOGGER = Logger.getLogger(ArticleController.class);
@@ -42,6 +46,9 @@ public class ArticleController {
 	@Autowired
 	CommentRepository commentRepository;
 	
+	@Autowired
+	BlogService blogService;
+	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String articleHome(@ModelAttribute Article article) {
 		return "addArticle";
@@ -53,8 +60,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value = { "/addArticle" }, method = RequestMethod.POST)
-	public String addArticle(@ModelAttribute Article article, RedirectAttributes redirect) {
+	public String addArticle(@ModelAttribute Article article, RedirectAttributes redirect, Model model) {
 		LOGGER.info("article id:::::"+article.toString());
+		long blogId = (Long)((ModelMap) model).get("blogid");
+		Blog blog = blogService.findBlogById(blogId);
 		Date date= new java.util.Date();
 		article.setDate(new Timestamp(date.getTime()));
 		MultipartFile articleImg = article.getArticleImg();
@@ -66,7 +75,7 @@ public class ArticleController {
 				throw new RuntimeException("Article Image saving failed", e);
 			}
 		}
-
+		article.setBlog(blog);
 		articleRepository.save(article);
 		redirect.addFlashAttribute("articles", articleRepository.findAll());
 		return "redirect:/";
