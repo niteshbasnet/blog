@@ -25,20 +25,23 @@
 					<fieldset>
 					<%-- <input type="hidden" name="_flowExecutionId" value="<c:out value="${flowExecutionId}"/>"/> --%>
 						<form:errors path="*" cssStyle="color:red;" element="div" />
+						<br/>
 						<table>
 							<tr>
 
-								<td ><label for="firstName"><spring:message
+								<td style="vertical-align: top"><label for="firstName"><spring:message
 											code="register.firsname.label" /></label></td>
 
 								<td class="data"><form:input id="firstName" class="form-control"
 										path="firstName" type="text" /> <form:errors path="firstName" 
-										cssStyle="color:red;" /></td>
+										cssStyle="color:red;" />
+										
+										<br/></td>
 							</tr>
 
 							<tr>
 
-								<td><label for="lastName"><spring:message
+								<td style="vertical-align: top"><label for="lastName"><spring:message
 											code="register.lastname.label" /></label></td>
 
 								<td class="data">
@@ -46,13 +49,13 @@
 										<form:input id="lastName" path="lastName" type="text" class="form-control" />
 										<form:errors path="lastName" cssStyle="color:red;" />
 									</div>
-
+										<br/>
 								</td>
 							</tr>
 
 							<tr>
 
-								<td ><label for="birthDate"><spring:message
+								<td style="vertical-align: top"><label for="birthDate"><spring:message
 											code="register.birthdate.label" /></label></td>
 
 								<td class="data">
@@ -60,27 +63,27 @@
 									<div>
 										<form:input id="birthDate" path="birthDate" type="text" class="form-control" />
 										<form:errors path="birthDate" cssStyle="color:red;" />
-									</div>
+									</div><br/>
 								</td>
 							</tr>
 							
 							<tr>
 
-								<td ><label for="bio"><spring:message
+								<td style="vertical-align: top" ><label for="bio"><spring:message
 											code="register.bio.label" /></label></td>
 
 								<td class="data">
 									<div>
 										<form:textarea id="bio" path="bio" type="text" rows="5" class="form-control" />
 										<form:errors path="bio" cssStyle="color:red;" />
-									</div>
+									</div><br/>
 
 								</td>
 							</tr>
 							
 							<tr>
 
-								<td ><label for="email"><spring:message
+								<td style="vertical-align: top"><label for="email"><spring:message
 											code="register.email.label" /></label></td>
 
 								<td class="data">
@@ -88,25 +91,25 @@
 									<div>
 										<form:input id="email" path="email" type="text" class="form-control" />
 										<form:errors path="email" cssStyle="color:red;" />
-									</div>
+									</div><br/>
 								</td>
 							</tr>
 
 							<tr>
 
-								<td ><label for="userImage"><spring:message
+								<td style="vertical-align: top"><label for="userImage"><spring:message
 											code="register.userimage.label" /></label></td>
 
 								<td class="data">
 									<div>
 										<form:input id="userImage" path="userImage" type="file" class="form-control"/>
-									</div>
+									</div><br/>
 
 								</td>
 							</tr>
 							<tr>
 
-								<td ><label for="username"><spring:message
+								<td style="vertical-align: top"><label for="username"><spring:message
 											code="register.credential.username.label" /></label></td>
 
 								<td class="data">
@@ -116,13 +119,13 @@
 										<form:errors path="username" cssStyle="color:red;" />
 										<form:hidden path="enabled" value="True"/>
 										<form:hidden path="authority" value="ROLE_USER"/>
-									</div>
+									</div><br/>
 
 								</td>
 							</tr>
 							<tr>
 
-								<td class="label"><label for="password"><spring:message
+								<td style="vertical-align: top"><label for="password"><spring:message
 											code="register.credential.password.label" /></label></td>
 
 								<td class="data">
@@ -130,7 +133,7 @@
 										<form:input id="password"
 											path="password" type="password" />
 										<form:errors path="password" cssStyle="color:red;" />
-									</div>
+									</div><br/>
 
 								</td>
 							</tr>

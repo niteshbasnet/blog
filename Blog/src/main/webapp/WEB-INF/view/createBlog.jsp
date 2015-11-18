@@ -15,41 +15,43 @@
 
 <div
 		style="width: 100%; margin: auto; text-align: center; padding: 20px">
-		<div style="padding-left: 200px; width: 800px">
+		<div style="padding-left: 200px;">
 			<div style="text-align: left;">
 
 			<spring:url var="blogcreateurl" value="/blog/createblog"></spring:url>
 				<form:form modelAttribute="newblog" action="#{blogcreateurl}" method="post">
 					<fieldset>
 						<form:errors path="*" cssStyle="color:red;" element="div" />
+						<br/>
 						<table>
 							<tr>
 
-								<td ><label for="title"><spring:message
+								<td style="vertical-align:top"><label for="title"><spring:message
 											code="blog.title.label"  /></label></td>
 
 								<td class="data"><form:input id="title"
 										path="title" type="text" class="form-control"/> <form:errors path="title"
-										cssStyle="color:red;" /></td>
+										cssStyle="color:red;" /><br/></td>
 							</tr>
 							<tr>
 
-								<td ><label for="blogName"><spring:message
+								<td style="vertical-align:top"><label for="blogName"><spring:message
 											code="blog.blogName.label" /></label></td>
 
 								<td ><form:input id="blogName"
 										path="blogName" type="text" class="form-control"/> <form:errors path="blogName"
-										cssStyle="color:red;" /></td>
+										cssStyle="color:red;" /><br/></td>
 							</tr>
 							<tr>
 
-								<td ><label for="description"><spring:message
+								<td style="vertical-align:top"><label for="description"><spring:message
 											code="blog.description.label" /></label></td>
 
 								<td class="data">
 									<div>
 										<form:textarea id="description" path="description" type="text" rows="5" class="form-control" />
 										<form:errors path="description" cssStyle="color:red;" />
+										<br/>
 									</div>
 
 								</td>
@@ -61,6 +63,7 @@
 
 								<td class="data">
 									<div>
+										<br/>									
 										<input type="submit" value="Create new Blog" class = "btn btn-primary">
 									</div>
 
