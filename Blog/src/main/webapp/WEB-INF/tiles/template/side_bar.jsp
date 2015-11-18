@@ -5,6 +5,7 @@
 <tiles:importAttribute name="navList" />
 
 <ul class="sidebar.affix-top">
+
 	<li><a href="<spring:url value="/blog"/>">Home</a></li>
 	<li>Blog List
 		<ul>

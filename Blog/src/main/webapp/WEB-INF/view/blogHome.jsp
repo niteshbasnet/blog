@@ -11,7 +11,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body >
-<div class="panel panel-default">
+<div class="panel panel-default" style="padding:20px">
 	<c:forEach var="article" items="${articles}">
 		<a href="<spring:url value="/article/articleDetail/${article.id}"/>">${article.title}</a><br/>
 		Date: ${article.date}
