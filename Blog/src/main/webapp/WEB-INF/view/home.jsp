@@ -21,7 +21,7 @@
 		<a href="<spring:url value="/blog/${blog.blogName}"/>">${blog.title}</a><br/>
 		<br/>
 		
-		 ${blog.description}"
+		 ${blog.description}
 		<br/>
 	</c:forEach>
 </security:authorize>
