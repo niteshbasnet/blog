@@ -17,8 +17,8 @@
 		<div style="padding-left: 200px; width: 800px">
 			<div style="text-align: left;">
 
-
-				<form:form modelAttribute="newblog" action="${flowExecutionUrl}">
+			<spring:url var="blogcreateurl" value="/blog/createblog"></spring:url>
+				<form:form modelAttribute="newblog" action="#{blogcreateurl}" method="post">
 					<fieldset>
 						<form:errors path="*" cssStyle="color:red;" element="div" />
 						<table>
@@ -53,24 +53,16 @@
 
 								</td>
 							</tr>
-						</table>
-						<input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
-						<table width="45%" border="0" cellspacing="3" cellpadding="1">
+							
 							<tr>
-								<td>
-									<button type="submit" id="previous" name="_eventId_previous">
-										<spring:message code="previous" />
-									</button>
-								</td>
-								<td>
-									<button type="submit" id="save" name="_eventId_save">
-										<spring:message code="save" />
-									</button>
-								</td>
-								<td>
-									<button type="submit" id="cancel" name="_eventId_cancel">
-										<spring:message code="cancel" />
-									</button>
+
+								<td class="label"></td>
+
+								<td class="data">
+									<div>
+										<input type="submit" value="Create new Blog">
+									</div>
+
 								</td>
 							</tr>
 						</table>

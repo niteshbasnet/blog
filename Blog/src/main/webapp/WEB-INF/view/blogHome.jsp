@@ -10,17 +10,14 @@
 <title>Home</title>
 </head>
 <body>
-<div class="myform">
-Welcome ${userName} <br/>
 	<c:forEach var="article" items="${articles}">
-		<a href="<spring:url value="/article/${article.id}"/>">${article.title}
-		</a>
+		<a href="<spring:url value="/article/articleDetail/${article.id}"/>">${article.title}</a><br/>
+		Date: ${article.date}
 		<br/>tags : [
 		<c:forEach var="tag" items="${article.tags}">
 			<a href="<spring:url value="/article/tag/${tag}"/>"> #${tag}</a>,		
 		</c:forEach>
 		]<br/><br/>
 	</c:forEach>
-	</div>
 </body>
 </html>

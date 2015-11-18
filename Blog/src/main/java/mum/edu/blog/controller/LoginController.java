@@ -1,5 +1,7 @@
 package mum.edu.blog.controller;
 
+import java.security.Principal;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,18 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import mum.edu.blog.domain.User;
+
 @Controller
 @SessionAttributes({"userName","blogid"})
 public class LoginController {
 
 	@RequestMapping(value={"/login"}, method = RequestMethod.GET)
 	public String login(Model model) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    String name = auth.getName();
-	    if(name.equals("anonymousUser"))
 	    	return "login";
-	    else return "redirect:blog";
 	    	
 	}
  
@@ -32,11 +31,11 @@ public class LoginController {
  
 	}
  
-	@RequestMapping(value="/logout", method = RequestMethod.GET)
-	public String logout(Model model, SessionStatus status) {
-		status.setComplete();
- 		return "redirect:/login";
- 	}
+//	@RequestMapping(value="/logout", method = RequestMethod.GET)
+//	public String logout(Model model, SessionStatus status) {
+//		status.setComplete();
+// 		return "redirect:/login";
+// 	}
 	
 //	@RequestMapping(value="/signUp", method = RequestMethod.GET)
 //	public String signup(@ModelAttribute("newUser") User user) {

@@ -3,6 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
 http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" start-state="prepareFlow">
+<var name="newblog" class="mum.edu.blog.domain.Blog"/>
 
 <action-state id="prepareFlow">
     <evaluate expression="signUpController.prepareFlowForm()" result="flowScope.user"/>
@@ -11,38 +12,41 @@ http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd" start-stat
 
 
 	<view-state id="register" view="signUp" model="user">
-		<transition on="submit" to="confirm" validate="true"/>
+		<transition on="next" to="createBlog" validate="true">
+			<evaluate expression="signUpController.checkUserName(flowScope.user,messageContext)"/>
+		</transition>
 <!-- 		<transition on-exception="InvalidUserException" to="register"/> -->
-        <transition on="back" to="done"/>
+        <transition on="cancel" to="done"/>
+        <transition on="save" to="confirm" validate="true">
+        	<evaluate expression="signUpController.checkUserName(flowScope.user,messageContext)"/>
+        </transition>
 	</view-state>
 	
 	
-<!-- <transition on="userEntered" to="performLoginAction" />
-	<action-state id="performLoginAction">
-		 <evaluate expression="signUpService.performLogin(userModel)" />
-
-		<transition to="displayLoginSuccessView" /> 
-
-		 <transition
-			on-exception="Exception"
-			to="displayLoginErrorView" /> 
-		</action-state> -->
-
-	<!-- <view-state id="displayLoginSuccessView" view="/WEB-INF/view/addBlog.jsp" />
-
-	<view-state id="displayLoginErrorView" view="/WEB-INF/view/singUp.jsp" />
-	<end-state id="done" view="externalRedirect:contextRelative:login" /> -->
-
-
-	<!-- <view-state id="signUp"> <transition on="review" to="signupOrder"/> 
-		</view-state> <view-state id="signupOrder"> <transition on="confirm" to="done" 
-		/> <transition on="revise" to="signUpForm" /> <transition on="cancel" to="cancel" 
-		/> </view-state> <end-state id="done" view="externalRedirect:contextRelative:signup"/> 
-		<end-state id="cancel" /> -->
-   		
+	<view-state id="createBlog" view="addBlog" model="newblog">
+     	
+     	<transition on="previous" to="register" />
+        <transition on="save" to="confirm" validate="true">  
+        	<evaluate expression="signUpController.checkBlogName(flowScope.newblog,messageContext)"/>      	       	
+        	<!-- <evaluate expression="signUpController.saveUserAndBlog(flowScope.user,flowScope.newblog)"/> -->
+        </transition>
+        <transition on="cancel" to="done" />
+    </view-state>
+		
+	<!-- <action-state id="checkUser">
+	<evaluate expression="signUpController.checkUserName(flowScope.user)"/>
+	<transition on="yes" to="register" />
+	<transition on="no" to="confirm" />
+	</action-state>
+	<action-state id="checkBlog">
+	<evaluate expression="signUpController.checkBlogName(flowScope.newblog)"/>
+	<transition on="yes" to="createBlog" />
+	<transition on="no" to="confirm" />
+	</action-state> -->
+	
 		<action-state id="confirm">
         <!--Do some action on the form-->
-        <evaluate expression="signUpController.bindAndValidate(flowRequestContext,flowScope.user)"/>
+        <evaluate expression="signUpController.saveUserAndBlog(flowScope.user,flowScope.newblog)"/>
         <transition on="success" to="returnToController" />
         <transition on="error" to="register"/>
    		</action-state>

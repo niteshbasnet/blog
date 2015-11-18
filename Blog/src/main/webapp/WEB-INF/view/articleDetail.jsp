@@ -6,18 +6,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Article Details</title>
+<title></title>
 </head>
 <body>
-	Welcome ${userName}
-	<h4>Title</h4>${article.title}
-	<h4>Title</h4>${article.content}
 <div class="myform">
+	<div class="body">
+		<div class="article">
+			<h3>${article.title}</h3>
+			<h4>Content</h4>${article.content}
+		</div>
+		<div class="comment">
 	<c:forEach var="comment" items="${comments}">
 		<fieldset>
-			${comment.comment}
+					<p>${comment.comment}</p>
+					<br />
+					<p>${comment.date}</p>
+
 		</fieldset>
 	</c:forEach>
+		</div>
 
 	<form:form modelAttribute="comment"
 		action="/blog/article/${article.id}/addComment" method="post">
@@ -29,6 +36,7 @@
 			<input type="submit" value="Add" />
 		</fieldset>
 	</form:form>
-	</div>	
+
+	</div>
 </body>
 </html>

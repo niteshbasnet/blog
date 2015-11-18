@@ -18,7 +18,7 @@
                 Pass: <input type="password" name='j_password' /> <br />
                 Remember me: <input type="checkbox" name="_spring_security_remember_me" /> <br />
                 <input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
-            <input type="submit" />
+            <input type="submit" value="Login" />
         </form>
     </body>
 </html>

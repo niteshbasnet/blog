@@ -65,9 +65,10 @@ public class User implements Serializable {
 	private String password;
 	private String authority;
 
-	@ManyToMany
-	@JoinTable(name = "user_blog", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
-			@JoinColumn(name = "blogId") })
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "user_blog",
+							joinColumns = { @JoinColumn(name = "userId") }, 
+							inverseJoinColumns = {@JoinColumn(name = "blogId") })
 	private List<Blog> blogList = new ArrayList<Blog>();
 
 	public List<Blog> getBlogList() {
