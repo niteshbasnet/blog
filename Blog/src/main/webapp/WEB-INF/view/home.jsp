@@ -18,7 +18,7 @@
 <security:authorize access="isAuthenticated()">
 
 <c:forEach var="blog" items="${userBlogs}">
-		<a href="<spring:url value="/blog/${blog.blogName}"/>">${blog.blogName}</a><br/>
+		<a href="<spring:url value="/blog/${blog.blogName}"/>">${blog.title}</a><br/>
 		<br/>
 		
 		 ${blog.description}"
