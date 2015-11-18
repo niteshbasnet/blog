@@ -29,7 +29,7 @@
 		<security:authorize access="isAuthenticated()">
   					Welcome  <security:authentication property="principal.username" />
 			<form method="post"
-				action="<c:url value='j_spring_security_logout' />">
+				action="<spring:url value='/j_spring_security_logout' />">
 
 				<input type="hidden" name="<c:out value="${_csrf.parameterName}"/>"
 					value="<c:out value="${_csrf.token}"/>" /> <input type="submit"

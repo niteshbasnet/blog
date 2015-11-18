@@ -6,9 +6,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login JSP Page</title>
-        <link href="<c:url value="/resource/css/main.css"/>" rel="stylesheet">
     </head>
     <body>
+    <div class="container">
         <h1>Login Page!</h1>
         <c:if test="${error eq true}">
             <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
@@ -18,7 +18,8 @@
                 Pass: <input type="password" name='j_password' /> <br />
                 Remember me: <input type="checkbox" name="_spring_security_remember_me" /> <br />
                 <input type="hidden" name="<c:out value="${_csrf.parameterName}"/>" value="<c:out value="${_csrf.token}"/>"/>
-            <input type="submit" value="Login" />
+            <button type="submit" class="btn btn-default">Login </button>
         </form>
+        </div>
     </body>
 </html>
