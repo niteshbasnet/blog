@@ -5,6 +5,10 @@
  */
 
 /* Toggle Styles */
+.label
+{
+	vertical-align: top;
+}
 
 #wrapper {
     padding-left: 0;

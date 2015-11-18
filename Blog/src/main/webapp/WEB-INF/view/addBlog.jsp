@@ -15,13 +15,14 @@
 
 <div
 		style="width: 100%; margin: auto; text-align: center; padding: 20px">
-		<div style="padding-left: 200px; width: 800px">
+		<div style="padding-left: 200px;">
 			<div style="text-align: left;">
 
 
 				<form:form modelAttribute="newblog" action="${flowExecutionUrl}">
 					<fieldset>
 						<form:errors path="*" cssStyle="color:red;" element="div" />
+						<br/>
 						<table>
 							<tr>
 
@@ -30,7 +31,7 @@
 
 								<td class="data"><form:input id="title"
 										path="title" type="text" class="form-control" /> <form:errors path="title"
-										cssStyle="color:red;" /></td>
+										cssStyle="color:red;" /><br/></td>
 							</tr>
 							<tr>
 
@@ -38,8 +39,8 @@
 											code="blog.blogName.label" /></label></td>
 
 								<td class="data"><form:input id="blogName"
-										path="blogName" type="text" /> <form:errors path="blogName"
-										cssStyle="color:red;" /></td>
+										path="blogName" type="text" class="form-control"/> <form:errors path="blogName"
+										cssStyle="color:red;" /><br/></td>
 							</tr>
 							<tr>
 
@@ -48,8 +49,9 @@
 
 								<td class="data">
 									<div>
-										<form:textarea id="description" path="description" type="text" rows="5" />
+										<form:textarea id="description" path="description" type="text" rows="5" class="form-control"/>
 										<form:errors path="description" cssStyle="color:red;" />
+										<br/>
 									</div>
 
 								</td>

@@ -23,7 +23,6 @@
 		
 		 ${blog.description}
 		<br/>
-		<hr>
 	</c:forEach>
 </security:authorize>
 
