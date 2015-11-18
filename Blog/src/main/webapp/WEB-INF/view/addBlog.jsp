@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Blog</title>
+
 </head>
 <body>
 
@@ -28,7 +29,7 @@
 											code="blog.title.label" /></label></td>
 
 								<td class="data"><form:input id="title"
-										path="title" type="text" /> <form:errors path="title"
+										path="title" type="text" class="form-control" /> <form:errors path="title"
 										cssStyle="color:red;" /></td>
 							</tr>
 							<tr>

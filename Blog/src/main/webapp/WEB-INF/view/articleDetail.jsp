@@ -9,8 +9,8 @@
 <title></title>
 </head>
 <body>
-<div class="myform">
-	<div class="body">
+
+	<div style="padding-left: 50px; padding-bottom:50px;" class="panel panel-default">
 		<div class="article">
 			<h3>${article.title}</h3>
 			<h4>Content</h4>${article.content}
@@ -30,10 +30,10 @@
 		action="/blog/article/${article.id}/addComment" method="post">
 		<fieldset>
 			<p>
-				<strong>Comment:</strong> <label><form:textarea
+				<strong>Comment:</strong> <label><form:textarea class="form-control"
 						path="comment" name="comment" rows="10" cols="30" /></label>
 			</p>
-			<input type="submit" value="Add" />
+			<input type="submit" value="Add" class = "btn btn-primary"/>
 		</fieldset>
 	</form:form>
 

@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Blog</title>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -24,30 +25,30 @@
 						<table>
 							<tr>
 
-								<td class="label"><label for="title"><spring:message
-											code="blog.title.label" /></label></td>
+								<td ><label for="title"><spring:message
+											code="blog.title.label"  /></label></td>
 
 								<td class="data"><form:input id="title"
-										path="title" type="text" /> <form:errors path="title"
+										path="title" type="text" class="form-control"/> <form:errors path="title"
 										cssStyle="color:red;" /></td>
 							</tr>
 							<tr>
 
-								<td class="label"><label for="blogName"><spring:message
+								<td ><label for="blogName"><spring:message
 											code="blog.blogName.label" /></label></td>
 
-								<td class="data"><form:input id="blogName"
-										path="blogName" type="text" /> <form:errors path="blogName"
+								<td ><form:input id="blogName"
+										path="blogName" type="text" class="form-control"/> <form:errors path="blogName"
 										cssStyle="color:red;" /></td>
 							</tr>
 							<tr>
 
-								<td class="label"><label for="description"><spring:message
+								<td ><label for="description"><spring:message
 											code="blog.description.label" /></label></td>
 
 								<td class="data">
 									<div>
-										<form:textarea id="description" path="description" type="text" rows="5" />
+										<form:textarea id="description" path="description" type="text" rows="5" class="form-control" />
 										<form:errors path="description" cssStyle="color:red;" />
 									</div>
 
@@ -60,7 +61,7 @@
 
 								<td class="data">
 									<div>
-										<input type="submit" value="Create new Blog">
+										<input type="submit" value="Create new Blog" class = "btn btn-primary">
 									</div>
 
 								</td>

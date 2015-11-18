@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Add Article</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 		<fieldset>
 		
 				<p>
-					<strong>Title:</strong> <label><form:input path="title"	name="title" class="txtBox"/></label>
+					<strong>Title:</strong> <label><form:input path="title"	name="title" class="form-control"/></label>
 				</p>
 				
 				<p>

@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add Comment</title>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
    alert("asdasdas");
    var files=${json};
@@ -18,9 +19,9 @@
 <form:form  modelAttribute="comment" action="addComment" method="post">
 <fieldset>
 <p>
-<strong>Comment:</strong> <label><form:textarea path="comment"	name="comment" rows="10" cols="30"/></label>
+<strong>Comment:</strong> <label><form:textarea path="comment"	name="comment" rows="10" cols="30" class="form-control" /></label>
 	</p>	
-	<input type="submit" value="Add" />
+	<input type="submit" value="Add" class = "btn btn-primary"/>
 	</fieldset>
 </form:form>
 
