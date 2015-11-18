@@ -9,14 +9,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Sign Up</title>
 </head>
 <body>
 
 	<div
 		style="width: 100%; margin: auto; text-align: center; padding: 20px">
-		<div style="padding-left: 200px; width: 800px">
-			<div style="text-align: left;">
+		<div style="padding-left: 200px; padding-bottom:50px; width: 900px;" class="panel panel-default">
+			<div style="text-align: left;" >
 
 
 				<form:form modelAttribute="user" action="${flowExecutionUrl}"
@@ -27,22 +28,22 @@
 						<table>
 							<tr>
 
-								<td class="label"><label for="firstName"><spring:message
+								<td ><label for="firstName"><spring:message
 											code="register.firsname.label" /></label></td>
 
-								<td class="data"><form:input id="firstName"
-										path="firstName" type="text" /> <form:errors path="firstName"
+								<td class="data"><form:input id="firstName" class="form-control"
+										path="firstName" type="text" /> <form:errors path="firstName" 
 										cssStyle="color:red;" /></td>
 							</tr>
 
 							<tr>
 
-								<td class="label"><label for="lastName"><spring:message
+								<td><label for="lastName"><spring:message
 											code="register.lastname.label" /></label></td>
 
 								<td class="data">
 									<div>
-										<form:input id="lastName" path="lastName" type="text" />
+										<form:input id="lastName" path="lastName" type="text" class="form-control" />
 										<form:errors path="lastName" cssStyle="color:red;" />
 									</div>
 
@@ -51,13 +52,13 @@
 
 							<tr>
 
-								<td class="label"><label for="birthDate"><spring:message
+								<td ><label for="birthDate"><spring:message
 											code="register.birthdate.label" /></label></td>
 
 								<td class="data">
 
 									<div>
-										<form:input id="birthDate" path="birthDate" type="text" />
+										<form:input id="birthDate" path="birthDate" type="text" class="form-control" />
 										<form:errors path="birthDate" cssStyle="color:red;" />
 									</div>
 								</td>
@@ -65,12 +66,12 @@
 							
 							<tr>
 
-								<td class="label"><label for="bio"><spring:message
+								<td ><label for="bio"><spring:message
 											code="register.bio.label" /></label></td>
 
 								<td class="data">
 									<div>
-										<form:textarea id="bio" path="bio" type="text" rows="5" />
+										<form:textarea id="bio" path="bio" type="text" rows="5" class="form-control" />
 										<form:errors path="bio" cssStyle="color:red;" />
 									</div>
 
@@ -79,13 +80,13 @@
 							
 							<tr>
 
-								<td class="label"><label for="email"><spring:message
+								<td ><label for="email"><spring:message
 											code="register.email.label" /></label></td>
 
 								<td class="data">
 
 									<div>
-										<form:input id="email" path="email" type="text" />
+										<form:input id="email" path="email" type="text" class="form-control" />
 										<form:errors path="email" cssStyle="color:red;" />
 									</div>
 								</td>
@@ -93,19 +94,19 @@
 
 							<tr>
 
-								<td class="label"><label for="userImage"><spring:message
+								<td ><label for="userImage"><spring:message
 											code="register.userimage.label" /></label></td>
 
 								<td class="data">
 									<div>
-										<form:input id="userImage" path="userImage" type="file" />
+										<form:input id="userImage" path="userImage" type="file" class="form-control"/>
 									</div>
 
 								</td>
 							</tr>
 							<tr>
 
-								<td class="label"><label for="username"><spring:message
+								<td ><label for="username"><spring:message
 											code="register.credential.username.label" /></label></td>
 
 								<td class="data">
@@ -139,17 +140,17 @@
 						<table width="30%" border="0" cellspacing="3" cellpadding="1">
 							<tr>
 								<td>
-									<button type="submit" id="next" name="_eventId_next">
+									<button type="submit" id="next" name="_eventId_next" class = "btn btn-primary">
 										<spring:message code="next" />
 									</button>
 								</td>
 								<td>
-									<button type="submit" id="save" name="_eventId_save">
+									<button type="submit" id="save" name="_eventId_save" class = "btn btn-primary">
 										<spring:message code="save" />
 									</button>
 								</td>
 								<td>
-									<button type="submit" id="cancel" name="_eventId_cancel">
+									<button type="submit" id="cancel" name="_eventId_cancel" class = "btn btn-primary">
 										<spring:message code="cancel" />
 									</button>
 								</td>

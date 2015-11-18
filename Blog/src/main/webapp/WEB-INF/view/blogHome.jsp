@@ -8,8 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body >
+<div class="panel panel-default">
 	<c:forEach var="article" items="${articles}">
 		<a href="<spring:url value="/article/articleDetail/${article.id}"/>">${article.title}</a><br/>
 		Date: ${article.date}
@@ -19,5 +21,6 @@
 		</c:forEach>
 		]<br/><br/>
 	</c:forEach>
+</div>
 </body>
 </html>
