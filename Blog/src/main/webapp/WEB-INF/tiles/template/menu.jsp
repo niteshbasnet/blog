@@ -5,7 +5,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 
-<div class="language">
+<div class="blog-masthead">
 	<div
 		style="position: relative; vertical-align: bottom; text-align: right; padding-top: 10px">
 
@@ -18,7 +18,7 @@
 				<li><a href="<spring:url value="/blog/createblog"/>">Add Blog</a></li>
 			</security:authorize>
 			<security:authorize access="isAnonymous()">
- 							 <li><a href="<spring:url value='/signup' />" >SignUp</a> 
+ 							 <li><a href="<spring:url value='/signup' />" >Create Own Blog</a> 
  							<li><li>
  							<a href="<spring:url value='/login' />" >Login</a>
  							<li>

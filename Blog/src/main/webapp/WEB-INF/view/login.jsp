@@ -6,6 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login JSP Page</title>
+        <link href="<c:url value="/resource/css/style.css"/>" rel="stylesheet">
     </head>
     <body>
         <h1>Login Page!</h1>

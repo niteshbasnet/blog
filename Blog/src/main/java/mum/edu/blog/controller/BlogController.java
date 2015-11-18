@@ -47,11 +47,15 @@ public class BlogController {
 	public String findBlog(Model model, Principal principal) {
 		
 		model.addAttribute("articles",articleService.findAll());
-		User user = userService.findByUsername(principal.getName());
 		
-		if(user !=null) 
-		{
-			model.addAttribute("userBlogs", blogService.userBlogs(user.getId()));
+		System.out.println("===================="+principal);
+		if(principal !=null){
+			User user = userService.findByUsername(principal.getName());
+			
+			if(user !=null) 
+			{
+				model.addAttribute("userBlogs", blogService.userBlogs(user.getId()));
+			}
 		}
 		return "home";
 	}
@@ -65,7 +69,7 @@ public class BlogController {
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/createblog", method = RequestMethod.POST)
 	public String saveBlog(@ModelAttribute("newblog") @Valid Blog blog, BindingResult result, Principal principal) {
-		if(result.hasErrors()) return "CreateBlog";
+		if(result.hasErrors()) return "createBlog";
 		
 		if(blogService.findByBlogName(blog.getBlogName()) != null) 
 		{
@@ -73,12 +77,17 @@ public class BlogController {
 			return "createBlog";
 		}
 
-		User user = userService.findByUsername(principal.getName());
+		if(principal != null){
+			User user = userService.findByUsername(principal.getName());
+			
+			user.addBlog(blog);
+			userService.save(user);
+			
+			return "redirect:/blog";
+		}
 		
-		user.addBlog(blog);
-		userService.save(user);
+		return "error-forbidden";
 		
-		return "redirect:/blog";
 	}
 	
 	@RequestMapping("{blogid}/{articleid}")

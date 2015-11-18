@@ -60,6 +60,20 @@
 		<put-attribute name="tagline" value="" />
 		<put-attribute name="body" value="/WEB-INF/view/login.jsp" />
 	</definition>	
+	<definition name="signUp" extends="baseLayout">
+		<put-attribute name="title" value="Sign Up" />
+		<put-attribute name="heading" value="Sign Up" />
+		<put-attribute name="side_bar" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/signUp.jsp" />
+	</definition>
+	<definition name="addBlog" extends="baseLayout">
+		<put-attribute name="title" value="Sign Up" />
+		<put-attribute name="heading" value="Sign Up" />
+		<put-attribute name="side_bar" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="body" value="/WEB-INF/view/addBlog.jsp" />
+	</definition>
 		
 	<definition name="nav.bar" preparer="navPreparer" template="/WEB-INF/tiles/template/side_bar.jsp" />
 </tiles-definitions>

@@ -14,12 +14,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import mum.edu.blog.domain.User;
 
 @Controller
-@SessionAttributes({"userName","blogid"})
 public class LoginController {
 
 	@RequestMapping(value={"/login"}, method = RequestMethod.GET)
-	public String login(Model model) {
-	    	return "login";
+	public String login(Model model, Principal principal) {
+		
+		if(principal !=null) return "redirect:/";
+	    return "login";
 	    	
 	}
  
@@ -31,24 +32,10 @@ public class LoginController {
  
 	}
  
-//	@RequestMapping(value="/logout", method = RequestMethod.GET)
-//	public String logout(Model model, SessionStatus status) {
-//		status.setComplete();
-// 		return "redirect:/login";
-// 	}
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(Model model, SessionStatus status) {
+		status.setComplete();
+ 		return "redirect:/login";
+ 	}
 	
-//	@RequestMapping(value="/signUp", method = RequestMethod.GET)
-//	public String signup(@ModelAttribute("newUser") User user) {
-//		
-//		System.out.println("get method coming");
-// 		return "signUp";
-// 	}
-//	
-//	@RequestMapping(value="/signUp", method = RequestMethod.POST)
-//	public String userSave(@ModelAttribute("newUser") @Valid User user, BindingResult result) {
-// 		if(result.hasErrors()) return "signUp";
-// 		
-// 		System.out.println("post method coming");
-// 		return "home";
-// 	}
 }
