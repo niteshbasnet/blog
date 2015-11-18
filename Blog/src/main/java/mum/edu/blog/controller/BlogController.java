@@ -45,14 +45,15 @@ public class BlogController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String findBlog(Model model, Principal principal) {
-		//String name = principal.getName();
-//		String name = principal.getName();
-		Blog blog = blogService.findBlogById(blogid);
-		model.addAttribute("articles",articleService.findArticleByBlog(blog));
-		//model.addAttribute("userName", name);
-//		model.addAttribute("userName", name);
-		model.addAttribute("blogid", blogid);
-		return "blogHome";
+		
+		model.addAttribute("articles",articleService.findAll());
+		User user = userService.findByUsername(principal.getName());
+		
+		if(user !=null) 
+		{
+			model.addAttribute("userBlogs", blogService.userBlogs(user.getId()));
+		}
+		return "home";
 	}
 	
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
@@ -73,11 +74,9 @@ public class BlogController {
 		}
 
 		User user = userService.findByUsername(principal.getName());
-		System.out.println(user.getFirstName());
+		
 		user.addBlog(blog);
 		userService.save(user);
-		//blogService.save(blog);
-		
 		
 		return "redirect:/blog";
 	}
@@ -90,5 +89,12 @@ public class BlogController {
 		model.addAttribute("comments",commentService.findCommentByArticle(article));
 		model.addAttribute("article", article);
 		return "articleDetail";
+	}
+	@RequestMapping("/{blogname}")
+	public String Showblog(@PathVariable("blogname") String blogName, Model model){
+		Blog blog = blogService.findByBlogName(blogName);
+		model.addAttribute("articles",articleService.findArticleByBlog(blog));
+		
+		return "blogHome";
 	}
 }
