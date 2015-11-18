@@ -35,6 +35,7 @@ field{
 	border-radius:10px;
 	background-color : #339999;
 	padding:5px;
+	width:290px;
 }
 
 fieldset{
@@ -42,6 +43,7 @@ fieldset{
 	border-radius:10px;
 	background-color : #339999;
 	padding: 5px;
+	width:290px;
 }
 
 body {

@@ -10,7 +10,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link href="<c:url value="/resource/css/main.css"/>" rel="stylesheet">
+<link href="<c:url value="/resource/css/style.css"/>" rel="stylesheet">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 
@@ -40,7 +40,7 @@
 		</div>
 		
 	</div>
-	<div class="footer" style="clear:both;">
+	<div class="footer" style="clear:both;" align="center">
 			<tiles:insertAttribute name="footer" />
 		</div>
 	

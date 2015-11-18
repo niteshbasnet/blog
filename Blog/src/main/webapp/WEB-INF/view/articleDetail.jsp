@@ -12,12 +12,13 @@
 	Welcome ${userName}
 	<h4>Title</h4>${article.title}
 	<h4>Title</h4>${article.content}
-
+<div class="myform">
 	<c:forEach var="comment" items="${comments}">
 		<fieldset>
 			${comment.comment}
 		</fieldset>
 	</c:forEach>
+
 	<form:form modelAttribute="comment"
 		action="/blog/article/${article.id}/addComment" method="post">
 		<fieldset>
@@ -28,5 +29,6 @@
 			<input type="submit" value="Add" />
 		</fieldset>
 	</form:form>
+	</div>	
 </body>
 </html>

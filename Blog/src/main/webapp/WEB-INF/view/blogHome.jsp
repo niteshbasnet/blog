@@ -10,6 +10,7 @@
 <title>Home</title>
 </head>
 <body>
+<div class="myform">
 Welcome ${userName} <br/>
 	<c:forEach var="article" items="${articles}">
 		<a href="<spring:url value="/article/${article.id}"/>">${article.title}
@@ -20,6 +21,6 @@ Welcome ${userName} <br/>
 		</c:forEach>
 		]<br/><br/>
 	</c:forEach>
-	<p>sdhsdasl<p>
+	</div>
 </body>
 </html>
