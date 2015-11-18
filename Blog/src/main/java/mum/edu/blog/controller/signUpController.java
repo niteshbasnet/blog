@@ -3,7 +3,6 @@ package mum.edu.blog.controller;
 import java.io.File;
 
 import org.apache.log4j.Logger;
-import org.neo4j.cypher.internal.compiler.v2_1.planner.logical.steps.uniqueIndexSeekLeafPlanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.binding.message.MessageBuilder;
