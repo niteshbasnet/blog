@@ -10,11 +10,16 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <link href="<c:url value="/resource/css/main.css"/>" rel="stylesheet">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 
@@ -37,16 +42,22 @@
 		</div>
 
 		<div class="row">
-			<tiles:insertAttribute name="body" />
+			<div class="span9">
+				<div class="content-wrapper">
+					<tiles:insertAttribute name="body" />
+				</div>
+			</div>
 		</div>
-		<div>
-			<tiles:insertAttribute name="side_bar"/>
+		<div class="span6">
+			<div class="span3 bs-docs-sidebar">
+				<tiles:insertAttribute name="side_bar" />
+			</div>
 		</div>
-		
+
 	</div>
-	<div class="footer" style="clear:both;" align="center">
-			<tiles:insertAttribute name="footer" />
-		</div>
-	
+	<div class="footer" style="clear: both;">
+		<tiles:insertAttribute name="footer" />
+	</div>
+
 </body>
 </html>

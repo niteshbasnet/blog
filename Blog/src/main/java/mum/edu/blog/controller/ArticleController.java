@@ -3,6 +3,7 @@ package mum.edu.blog.controller;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import mum.edu.blog.domain.Article;
 import mum.edu.blog.domain.Comment;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -90,6 +92,12 @@ public class ArticleController {
 	public String articlesByTag(@PathVariable("tag") String tag, Model model) {
 		model.addAttribute("articles", articleService.findArticlesByTag(tag));
 		return "blogHome";
+	}
+	
+	@RequestMapping(value="/getArticles", method=RequestMethod.GET)
+	public @ResponseBody Article getArticles(){
+		LOGGER.info("getArticles:::::"+articleService.findArticleById(1));
+		return articleService.findArticleById(1);
 	}
 	
 }

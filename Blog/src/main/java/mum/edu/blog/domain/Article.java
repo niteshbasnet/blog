@@ -72,7 +72,7 @@ public class Article implements Serializable {
 	@Column(name = "POST_DATE")
 	private Date date;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "BLG_ID")
 	private Blog blog;
 

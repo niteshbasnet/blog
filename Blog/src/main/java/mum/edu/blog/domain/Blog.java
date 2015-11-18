@@ -33,7 +33,7 @@ public class Blog implements Serializable{
 	@Column(name = "TITLE")
 	private String title;
 	
-	@Pattern(regexp = "[a-z0-9_-]+")
+	@Pattern(regexp = "[a-zA-Z0-9_-]+")
 	@Column(unique=true)
 	private String blogName;
 

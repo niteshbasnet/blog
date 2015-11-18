@@ -79,7 +79,7 @@
 	</flow:flow-registry>
 	
 	<bean id="flowViewResolver" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-       <property name="viewResolvers" ref="viewResolver"/>
+       <property name="viewResolvers" ref="tilesViewResolver"/>
     </bean>
     
 	<flow:flow-builder-services id="myFlowBuilderServices" view-factory-creator="flowViewResolver" validator="validator"/>
